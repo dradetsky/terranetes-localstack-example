@@ -1,0 +1,43 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: aws
+  namespace: terraform-system
+stringData:
+  AWS_ACCESS_KEY_ID: mock_access_key
+  AWS_SECRET_ACCESS_KEY: mock_secret_key
+  AWS_REGION: us-east-1
+---
+apiVersion: terraform.appvia.io/v1alpha1
+kind: Provider
+metadata:
+  name: aws
+  namespace: terraform-system
+spec:
+  source: secret
+  provider: aws
+  secretRef:
+    namespace: terraform-system
+    name: aws
+  configuration:
+    s3_use_path_style: true
+    endpoints:
+      apigateway:       "http://host.minikube.internal:4566"
+      cloudformation:   "http://host.minikube.internal:4566"
+      cloudwatch:       "http://host.minikube.internal:4566"
+      dynamodb:         "http://host.minikube.internal:4566"
+      es:               "http://host.minikube.internal:4566"
+      firehose:         "http://host.minikube.internal:4566"
+      iam:              "http://host.minikube.internal:4566"
+      kinesis:          "http://host.minikube.internal:4566"
+      lambda:           "http://host.minikube.internal:4566"
+      route53:          "http://host.minikube.internal:4566"
+      redshift:         "http://host.minikube.internal:4566"
+      s3:               "http://host.minikube.internal:4566"
+      secretsmanager:   "http://host.minikube.internal:4566"
+      ses:              "http://host.minikube.internal:4566"
+      sns:              "http://host.minikube.internal:4566"
+      sqs:              "http://host.minikube.internal:4566"
+      ssm:              "http://host.minikube.internal:4566"
+      stepfunctions:    "http://host.minikube.internal:4566"
+      sts:              "http://host.minikube.internal:4566"

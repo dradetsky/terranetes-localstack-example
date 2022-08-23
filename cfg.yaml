@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: apps
+---
+apiVersion: terraform.appvia.io/v1alpha1
+kind: Configuration
+metadata:
+  name: bucket
+  namespace: apps
+spec:
+  module: github.com/terraform-aws-modules/terraform-aws-s3-bucket?ref=v3.3.0
+
+  providerRef:
+    name: aws
+
+  writeConnectionSecretToRef:
+    name: test
+    keys:
+      - s3_bucket_id
+      - s3_bucket_arn
+      - s3_bucket_region
+
+  variables:
+    bucket: my-tn-bucket

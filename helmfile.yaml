@@ -1,0 +1,8 @@
+repositories:
+  - name: appvia
+    url: https://terranetes-controller.appvia.io
+
+releases:
+  - name: terranetes-controller
+    chart: appvia/terranetes-controller
+    namespace: terraform-system
